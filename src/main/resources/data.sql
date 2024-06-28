@@ -1,11 +1,13 @@
-INSERT INTO roles (nombre_rol) VALUES ("USUARIO"), ("ADMINISTRADOR");
+INSERT INTO roles (nombre_rol) VALUES ("USUARIO"), ("ADMINISTRADOR")
+ON DUPLICATE KEY UPDATE nombre_rol=VALUES(nombre_rol);
 
 INSERT INTO categorias (nombre, imagen) VALUES
 ("PlayStation 3", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/iconos+plataformas/icons8-play-station-48.png"),
 ("PlayStation 4", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/iconos+plataformas/icons8-play-station-48.png"),
 ("PlayStation 5", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/iconos+plataformas/icons8-play-station-48.png"),
 ("Xbox", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/iconos+plataformas/icons8-xbox-48.png"),
-("Nintendo Switch", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/iconos+plataformas/icons8-nintendo-switch-60.png");
+("Nintendo Switch", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/iconos+plataformas/icons8-nintendo-switch-60.png")
+ON DUPLICATE KEY UPDATE nombre=VALUES(nombre), imagen=VALUES(imagen);
 
 INSERT INTO caracteristicas (nombre, imagen) VALUES
 ("Terror", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/iconos+caracteristicas/terror.png"),
@@ -29,7 +31,8 @@ INSERT INTO caracteristicas (nombre, imagen) VALUES
 ("Dificultad media", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/iconos+caracteristicas/nivelMedio.png"),
 ("Dificultad alta", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/iconos+caracteristicas/nivelAlto.png"),
 ("Single Player", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/iconos+caracteristicas/joystick.png"),
-("MultiPlayer", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/iconos+caracteristicas/joystick.png");
+("MultiPlayer", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/iconos+caracteristicas/joystick.png")
+ON DUPLICATE KEY UPDATE nombre=VALUES(nombre), imagen=VALUES(imagen);
 
 INSERT INTO videojuegos (nombre, descripcion, imagenes, categoria_id) VALUES
 ("Persona 5: Royal", "Los eventos de Persona 5 se desarrollan en Tokio y narran los sucesos de vida de Ren Amamiya, después de ser transferido al Instituto Shujin, al ser condenado a un año de libertad condicional por un delito de agresión del que fue falsamente acusado. Durante el curso escolar, él y varios de sus compañeros despiertan los poderes de sus Personas y se convierten en los \"Ladrones Fantasma de Corazones\" (Phantom Thieves of Hearts), justicieros enmascarados que se dedican a recorrer un mundo sobrenatural llamado Metaverso, robando y cambiando los deseos corruptos en el corazón de la gente.", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/P5R-1.jpg,https://gameshare-bucket.s3.sa-east-1.amazonaws.com/P5R-2.jpg", 1),
@@ -46,23 +49,24 @@ INSERT INTO videojuegos (nombre, descripcion, imagenes, categoria_id) VALUES
 ("BioShock", "BioShock 2 es un videojuego de terror y de disparos en primera persona, desarrollado por 2K Marin, y la segunda parte y secuela de BioShock.", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/BS-1.jpg,https://gameshare-bucket.s3.sa-east-1.amazonaws.com/BS2.jpg", 4),
 ("God of War", "God of War es la vuelta de Kratos a los videojuegos tras la trilogía original. Esta nueva entrega para PlayStation 4, si bien mantendrá varios de los ingredientes indivisibles de su jugabilidad, apostará por un nuevo comienzo para el personaje y una ambientación nórdica, ofreciéndonos una perspectiva más madura y realista de la mitología de dioses y monstruos milenarios habitual en la serie de títulos. En God of War, Kratos será un guerrero más curtido y pasivo, pues tendrá que desempeñar el rol de padre en un frío y hostil escenario, al que parece haberse retirado para olvidar su pasado.", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/GoW1.jpg,https://gameshare-bucket.s3.sa-east-1.amazonaws.com/GoW2.jpg", 4),
 ("The Witcher 3: Wild Hunt", "El jugador controlará una vez más a Geralt de Rivia, el afamado cazador de monstruos, (también conocido como el Lobo Blanco) y se enfrentará a un diversificadísimo bestiario y a unos peligros de unas dimensiones nunca vistas hasta el momento en la serie, mientras recorre los reinos del Norte. Durante su aventura, tendrá que hacer uso de un gran arsenal de armas, armaduras y todo tipo de magias para enfrentarse al que hasta ahora ha sido su mayor desafío, la cacería salvaje.", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/Witcher1.jpg,https://gameshare-bucket.s3.sa-east-1.amazonaws.com/Witcher2.jpg", 5),
-("Ori and the Will of the Wisps", "Ori and the Will of the Wisps es la continuación del emblemático videojuego de plataformas y aventuras Ori and the Blind Forest, desarrollado por Moon Studios. Se trata de una secuela que sigue ofreciéndonos un estilo impecable a nivel visual y jugable.", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/Ori-1.jpg,https://gameshare-bucket.s3.sa-east-1.amazonaws.com/Ori-2.jpg", 5);
-
+("Ori and the Will of the Wisps", "Ori and the Will of the Wisps es la continuación del emblemático videojuego de plataformas y aventuras Ori and the Blind Forest, desarrollado por Moon Studios. Se trata de una secuela que sigue ofreciéndonos un estilo impecable a nivel visual y jugable.", "https://gameshare-bucket.s3.sa-east-1.amazonaws.com/Ori-1.jpg,https://gameshare-bucket.s3.sa-east-1.amazonaws.com/Ori-2.jpg", 5)
+ON DUPLICATE KEY UPDATE nombre=VALUES(nombre), descripcion=VALUES(descripcion), imagenes=VALUES(imagenes), categoria_id=VALUES(categoria_id);
 
 INSERT INTO videojuego_caracteristica (caracteristica_id, videojuego_id) VALUES
-("1","2"),("1","8"),("1","7"),("1","8"),("1","12"),("1","14"),
-("3","3"),("3","4"),("3","5"),("3","8"),("3","1"),
-("4","9"),("4","6"),("4","10"),
-("7","11"),("7","15"),
-("9","10"),
-("10","2"),("10","3"),("10","4"),("10","8"),("10","9"),("10","12"),("10","11"),("10","13"),("10","5"),("10","7"),
-("11","1"),("11","6"),("11","7"),
-("12","1"),
-("13","4"),("13","6"),("13","10"),("13","15"),
-("15","2"),("15","3"),("15","8"),("15","9"),("15","11"),("15","12"),("15","13"),("15","14"),("15","1"),("15","5"),
-("17","9"),("17","13"),
-("18","1"),("18","4"),("18","6"),("18","7"),
-("19","8"),("19","9"),("19","10"),("19","11"),("19","12"),
-("20","2"),("20","3"),("20","5"),("20","13"),("20","14"),("20","15"),
-("21","2"),("21","3"),("21","4"),("21","5"),("21","7"),("21","9"),("21","11"),("21","12"),("21","13"),("21","14"),
-("22","1"),("22","6"),("22","8"),("22","10"),("21","15")
+(1, 2), (1, 8), (1, 7), (1, 8), (1, 12), (1, 14),
+(3, 3), (3, 4), (3, 5), (3, 8), (3, 1),
+(4, 9), (4, 6), (4, 10),
+(7, 11), (7, 15),
+(9, 10),
+(10, 2), (10, 3), (10, 4), (10, 8), (10, 9), (10, 12), (10, 11), (10, 13), (10, 5), (10, 7),
+(11, 1), (11, 6), (11, 7),
+(12, 1),
+(13, 4), (13, 6), (13, 10), (13, 15),
+(15, 2), (15, 3), (15, 8), (15, 9), (15, 11), (15, 12), (15, 13), (15, 14), (15, 1), (15, 5),
+(17, 9), (17, 13),
+(18, 1), (18, 4), (18, 6), (18, 7),
+(19, 8), (19, 9), (19, 10), (19, 11), (19, 12),
+(20, 2), (20, 3), (20, 5), (20, 13), (20, 14), (20, 15),
+(21, 2), (21, 3), (21, 4), (21, 5), (21, 7), (21, 9), (21, 11), (21, 12), (21, 13), (21, 14),
+(22, 1), (22, 6), (22, 8), (22, 10), (21, 15)
+ON DUPLICATE KEY UPDATE caracteristica_id=VALUES(caracteristica_id), videojuego_id=VALUES(videojuego_id);
